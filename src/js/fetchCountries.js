@@ -1,8 +1,12 @@
+import { error } from '@pnotify/core';
+
 const BASE_URL = `https://restcountries.eu/rest/v2/name/`;
 
 function fetchCountries(searchQuery) {
     return fetch(`${BASE_URL}${searchQuery}`).then(response => {
-        return response.json().catch(error => console.log('Error', error));
+        return response
+            .json()
+            .catch(error({ text: 'enter correct country name' }));
     });
 }
 

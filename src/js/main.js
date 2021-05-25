@@ -1,7 +1,7 @@
 import debounce from 'lodash.debounce';
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
-import { error} from '@pnotify/core';
+import { error } from '@pnotify/core';
 
 import countryCardTpl from '../templates/country.hbs';
 import countryListTpl from '../templates/country-list.hbs';
@@ -18,6 +18,8 @@ function onInputSearch(e) {
     API.fetchCountries(searchQuery).then(data => {
         if (data.status === 404) {
             error({ text: 'country not found' });
+            console.log(searchQuery);
+            console.log('s')
         }
         if (data.length > 10) {
             error({
