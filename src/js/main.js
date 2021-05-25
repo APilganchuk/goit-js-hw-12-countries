@@ -18,8 +18,6 @@ function onInputSearch(e) {
     API.fetchCountries(searchQuery).then(data => {
         if (data.status === 404) {
             error({ text: 'country not found' });
-            console.log(searchQuery);
-            console.log('s')
         }
         if (data.length > 10) {
             error({
