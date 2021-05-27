@@ -10,28 +10,31 @@ import getRefs from '../js/get-refs.js';
 
 const refs = getRefs();
 
-refs.searchForm.addEventListener('input', debounce(onInputSearch, 500));
+refs.input.addEventListener('input', debounce(onInputSearch, 500));
 
 function onInputSearch(e) {
-    const searchQuery = e.target.value;
+    let searchQuery = e.target.value;
 
-    API.fetchCountries(searchQuery).then(data => {
-        if (data.status === 404) {
-            error({ text: 'country not found' });
-        }
-        if (data.length > 10) {
-            error({
-                text: 'too many matches found.Please enter a more specific query!',
-            });
-            resetPage();
-        }
-        if (data.length > 2 && data.length <= 10) {
-            renderCountryesList(data);
-        }
-        if (data.length === 1) {
-            renderCountryCard(data);
-        }
-    });
+    if (searchQuery !== '' && searchQuery !== ' ' && searchQuery !== '.') {
+        refs.cardContainer.innerHTML = '';
+        API.fetchCountries(searchQuery).then(data => {
+            if (data.status === 404) {
+                error({ text: 'country not found' });
+            }
+            if (data.length > 10) {
+                error({
+                    text: 'too many matches found.Please enter a more specific query!',
+                });
+                resetPage();
+            }
+            if (data.length > 2 && data.length <= 10) {
+                renderCountryesList(data);
+            }
+            if (data.length === 1) {
+                renderCountryCard(data);
+            }
+        });
+    }
 }
 
 function renderCountryCard(country) {
