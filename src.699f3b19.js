@@ -16,7 +16,7 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"handlebars/dist/handlebars.runtime":"pAws"}],"htiI":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=n(require("handlebars/dist/handlebars.runtime"));function n(e){return e&&e.__esModule?e:{default:e}}const l=e.default.template({1:function(e,n,l,t,r){var o,a=e.lookupProperty||function(e,n){if(Object.prototype.hasOwnProperty.call(e,n))return e[n]};return"    <li>"+e.escapeExpression("function"==typeof(o=null!=(o=a(l,"name")||(null!=n?a(n,"name"):n))?o:e.hooks.helperMissing)?o.call(null!=n?n:e.nullContext||{},{name:"name",hash:{},data:r,loc:{start:{line:3,column:8},end:{line:3,column:16}}}):o)+"</li>\n"},compiler:[8,">= 4.3.0"],main:function(e,n,l,t,r){var o;return'<ul class="country_list-name">\n'+(null!=(o=(e.lookupProperty||function(e,n){if(Object.prototype.hasOwnProperty.call(e,n))return e[n]})(l,"each").call(null!=n?n:e.nullContext||{},n,{name:"each",hash:{},fn:e.program(1,r,0),inverse:e.noop,data:r,loc:{start:{line:2,column:4},end:{line:4,column:13}}}))?o:"")+"</ul>"},useData:!0});var t=l;exports.default=t;
 },{"handlebars/dist/handlebars.runtime":"pAws"}],"irxn":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var t={fetchCountries:r};exports.default=t;const e="https://restcountries.eu/rest/v2/name/";async function r(t){if(""===t)return;const r=await fetch(`${e}${t}`);return await r.json()}
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var t={fetchCountries:s};exports.default=t;const e="https://restcountries.eu/rest/v2/name/";async function s(t){if(""!==t)try{const o=await fetch(`${e}${t}`);return await o.json()}catch(s){console.log(s)}}
 },{}],"EGsz":[function(require,module,exports) {
 "use strict";function e(){return{cardContainer:document.querySelector(".js-country-container"),searchForm:document.querySelector(".js-search-form"),input:document.querySelector("#filter")}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=e;
 },{}],"d6sW":[function(require,module,exports) {
@@ -24,4 +24,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"lodash.debounce":"PZFh","@pnotify/core/dist/BrightTheme.css":"clu1","@pnotify/core/dist/PNotify.css":"clu1","@pnotify/core":"txz9","../templates/country.hbs":"xAbl","../templates/country-list.hbs":"htiI","../js/fetchCountries.js":"irxn","../js/get-refs.js":"EGsz"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/main");
 },{"./sass/main.scss":"clu1","./js/main":"d6sW"}]},{},["Focm"], null)
-//# sourceMappingURL=/goit-js-hw-12-countries/src.46c5e26b.js.map
+//# sourceMappingURL=/goit-js-hw-12-countries/src.699f3b19.js.map
