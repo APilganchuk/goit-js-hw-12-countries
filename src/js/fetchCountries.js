@@ -1,11 +1,14 @@
-
+export default { fetchCountries };
 
 const BASE_URL = `https://restcountries.eu/rest/v2/name/`;
 
-function fetchCountries(searchQuery) {
-    return fetch(`${BASE_URL}${searchQuery}`).then(response => {
-        return response.json();
-    });
+async function fetchCountries(searchQuery) {
+    // return fetch(`${BASE_URL}${searchQuery}`).then(response => {
+    //     return response.json();
+    // });
+    if (searchQuery === '') {
+        return;
+    }
+    const response = await fetch(`${BASE_URL}${searchQuery}`);
+    return await response.json();
 }
-
-export default { fetchCountries };

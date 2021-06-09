@@ -12,18 +12,31 @@ const refs = getRefs();
 
 refs.input.addEventListener('input', debounce(onInputSearch, 500));
 
-function onInputSearch(e) {
+async function onInputSearch(e) {
     const searchQuery = e.target.value.trim();
+    if (searchQuery === '') {
+        error({
+            text: 'country not found',
+            delay: 2000,
+        });
+        resetPage();
+    }
 
-    API.fetchCountries(searchQuery).then(data => {
+    const data = await API.fetchCountries(searchQuery);
+
+    try {
         if (data.status === 404) {
-            error({ text: 'country not found' });
+            error({
+                text: 'country not found',
+                delay: 2000,
+            });
         }
         if (data.length > 10) {
+            resetPage();
             error({
                 text: 'too many matches found.Please enter a more specific query!',
+                delay: 2000,
             });
-            resetPage();
         }
         if (data.length > 2 && data.length <= 10) {
             renderCountryesList(data);
@@ -31,7 +44,26 @@ function onInputSearch(e) {
         if (data.length === 1) {
             renderCountryCard(data);
         }
-    });
+    } catch (error) {
+        console.log(error);
+    }
+    // API.fetchCountries(searchQuery).then(data => {
+    //     if (data.status === 404) {
+    //         error({ text: 'country not found' });
+    //     }
+    //     if (data.length > 10) {
+    //         error({
+    //             text: 'too many matches found.Please enter a more specific query!',
+    //         });
+    //         resetPage();
+    //     }
+    //     if (data.length > 2 && data.length <= 10) {
+    //         renderCountryesList(data);
+    //     }
+    //     if (data.length === 1) {
+    //         renderCountryCard(data);
+    //     }
+    // });
 }
 
 function renderCountryCard(country) {
