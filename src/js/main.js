@@ -22,9 +22,9 @@ async function onInputSearch(e) {
         resetPage();
     }
 
-    const data = await API.fetchCountries(searchQuery);
-
     try {
+        const data = await API.fetchCountries(searchQuery);
+
         if (data.status === 404) {
             error({
                 text: 'country not found',
@@ -45,7 +45,7 @@ async function onInputSearch(e) {
             renderCountryCard(data);
         }
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
     }
     // API.fetchCountries(searchQuery).then(data => {
     //     if (data.status === 404) {
