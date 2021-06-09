@@ -9,6 +9,11 @@ async function fetchCountries(searchQuery) {
     if (searchQuery === '') {
         return;
     }
-    const response = await fetch(`${BASE_URL}${searchQuery}`);
-    return await response.json();
+
+    try {
+        const response = await fetch(`${BASE_URL}${searchQuery}`);
+        return await response.json();
+    } catch (error) {
+        console.log(error);
+    }
 }
